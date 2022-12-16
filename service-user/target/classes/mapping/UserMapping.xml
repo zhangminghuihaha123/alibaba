@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zmh.user.mapper.UserMapper">
+
+    <resultMap id="SelectQueryUsers" type="com.zmh.user.entry.User">
+        <id column="id" property="id"></id>
+        <result column="username" property="username"></result>
+        <result column="password" property="password"></result>
+        <result column="create_time" property="createTime"></result>
+        <result column="token" property="token"></result>
+        <result column="avater" property="avater"></result>
+        <result column="role" property="role"></result>
+    </resultMap>
+
+    <select id="SelectQueryUser" resultMap="SelectQueryUsers" parameterType="hashmap">
+        select * from user
+        <where>
+            <if test="id != null">and id =#{id}</if>
+            <if test="username != null">and username like concat('%',#{username},'%')</if>
+            <if test="password != null">and password =#{password}</if>
+            <if test="createTime != null">and create_time =#{createTime}</if>
+            <if test="token != null">and token =#{token}</if>
+        </where>
+    </select>
+
+
+</mapper>

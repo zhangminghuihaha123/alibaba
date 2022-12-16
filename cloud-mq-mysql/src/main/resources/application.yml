@@ -1,0 +1,40 @@
+server:
+  port: 9090
+
+spring:
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/alibaba?useUnicode=true&characterEncoding=utf8&serverTimezone=GMT%2B8&useSSL=false&allowPublicKeyRetrieval=true
+    username: root
+    password: root
+    type: com.alibaba.druid.pool.DruidDataSource
+  servlet:
+    multipart:
+      max-file-size: 100MB
+      max-request-size: 500MB
+  redis:
+    database: 0 #表示数据库0，Redis有16个数据库，对应0~15，这里的0代表-----> Select 0
+    host: localhost
+    port: 6379
+  rabbitmq:
+    #连接地址
+    host: 127.0.0.1
+    #端口号
+    port: 5672
+    #账号
+    username: guest
+    #密码
+    password: guest
+    #Virtual Hosts地址
+    virtual-host: /Mqalibaba
+  application:
+    name: cloud-mq
+  cloud:
+    nacos:
+      discovery:
+        server-addr: localhost:8848
+        ephemeral: false
+
+mybatis-plus:
+  type-aliases-package: com.zmh.mq.enty
+  mapper-locations: classpath:/mapping/*.xml

@@ -1,0 +1,6 @@
+server:
+  port: 8001
+
+mybatis-plus:
+  type-aliases-package: com.zmh.user.enty
+  mapper-locations: classpath:/mapping/*.xml
